@@ -1,6 +1,6 @@
-# generator-gn-schema [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> GeoNetwork metadata schema generator
 
+# GeoNetwork metadata schema generator
+ 
 Yeoman generator to create a new metadata schemas based in iso19139 schema for [GeoNetwork opensource](https://geonetwork-opensource.org/) 
 
 ## Installation
