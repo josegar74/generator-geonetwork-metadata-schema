@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Jose García",
+      "authorEmail": "josegar74@gmail.com",
+      "authorUrl": ""
+    }
+  }
+}
