@@ -56,7 +56,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template name="evaluate-iso19139.eamp-boolean">
+  <xsl:template name="evaluate-<%= name %>-boolean">
   <xsl:param name="base" as="node()"/>
   <xsl:param name="in"/>
 
