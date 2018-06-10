@@ -53,9 +53,11 @@ module.exports = class extends Generator {
           var pass = !_.isEmpty(_.trim(value));
 
           if (pass) {
-            return true;
+            if (value.startsWith('iso19139.')) {
+              return true;
+            }
+            return "Please enter a valid schema name. Valid schema names should start with 'iso19139.'";
           }
-
           return 'Please enter a non empty metadata schema name';
         }
       },
