@@ -6,7 +6,7 @@
 
 ### GeoNetwork version to use with this plugin
 
-Use GeoNetwork 3.4.0+. It's not supported in older versions so don't plug it into it!
+Use GeoNetwork <%= pomversion %>+. It's not supported in older versions so don't plug it into it!
 
 ### Adding the plugin to the source code
 
@@ -14,7 +14,7 @@ The best approach is to add the plugin as a submodule into GeoNetwork schema mod
 
 ```
 cd schemas
-git submodule add -b 3.4.x https://github.com/metadata101/<%= name %> <%= name %>
+git submodule add -b <%= branchname %> https://github.com/metadata101/<%= name %> <%= name %>
 ```
 
 Add the new module to the schema/pom.xml:
@@ -50,7 +50,7 @@ Add the module to the webapp in web/pom.xml:
 
 ### Adding editor configuration
 
-Editor configuration in GeoNetwork 3.4.x is done in `schemas/<%= name %>/src/main/plugin/<%= name %>/layout/config-editor.xml` inside each view. Default values are the following:
+Editor configuration in GeoNetwork <%= branchname %> is done in `schemas/<%= name %>/src/main/plugin/<%= name %>/layout/config-editor.xml` inside each view. Default values are the following:
 
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
@@ -77,6 +77,6 @@ After building the application, it's possible to deploy the schema plugin manual
 
 - Copy the content of the folder schemas/<%= name %>/src/main/plugin to INSTALL_DIR/geonetwork/WEB-INF/data/config/schema_plugins/<%= name %>
 
-- Copy the jar file schemas/<%= name %>/target/schema-<%= name %>-<%= version %>.jar to INSTALL_DIR/geonetwork/WEB-INF/lib.
+- Copy the jar file schemas/<%= name %>/target/schema-<%= name %>-<%= pomversion %>.jar to INSTALL_DIR/geonetwork/WEB-INF/lib.
 
 If there's no changes to the profile Java code or the configuration (config-spring-geonetwork.xml), the jar file is not required to be deployed each time.

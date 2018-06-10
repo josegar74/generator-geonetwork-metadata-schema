@@ -28,6 +28,7 @@
   <name><%= name %></name>
   <id><%= uuid %></id>
   <version>1.0</version>
+  <appMinorVersionSupported>3.4.0</appMinorVersionSupported>
   <title><%= title %></title>
   <description><%= description %></description>
   <standardUrl>http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=53798</standardUrl>

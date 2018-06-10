@@ -28,7 +28,7 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="<%= name %>SchemaPlugin"
-        class="org.fao.geonet.schema.iso19139.ISO19139SchemaPlugin">
+        class="org.fao.geonet.schema.<%= name.replace('.', '_') %>.<%= beanName %>SchemaPlugin">
     <property name="savedQueries">
       <list>
         <bean class="org.fao.geonet.kernel.schema.SavedQuery">
