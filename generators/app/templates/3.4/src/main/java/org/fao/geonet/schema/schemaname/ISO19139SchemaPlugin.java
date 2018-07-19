@@ -27,6 +27,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import org.apache.commons.lang.StringUtils;
 import org.fao.geonet.kernel.schema.*;
+import org.fao.geonet.schema.iso19139.ISO19139Namespaces;
 import org.fao.geonet.utils.Log;
 import org.fao.geonet.utils.Xml;
 import org.jdom.Element;
@@ -59,8 +60,8 @@ public class <%= name.toUpperCase().replace('.', '') %>SchemaPlugin
 
     static {
         allNamespaces = ImmutableSet.<Namespace>builder()
-            .add(<%= name.toUpperCase().replace('.', '') %>Namespaces.GCO)
-            .add(<%= name.toUpperCase().replace('.', '') %>Namespaces.GMD)
+            .add(ISO19139Namespaces.GCO)
+            .add(ISO19139Namespaces.GMD)
             .add(SRV)
             .build();
         allTypenames = ImmutableMap.<String, Namespace>builder()
