@@ -100,6 +100,48 @@ module.exports = class extends Generator {
       },
       {
         type: 'confirm',
+        name: 'identifymetadatastandard',
+        message: 'Use metadata standard name (gmd:metadataStandardName) and version (gmd:metadataStandardVersion) elements to identify the metadata',
+        default: false
+      },
+      {
+        when: function(props) {
+          return props.identifymetadatastandard;
+        },
+        type: 'input',
+        name: 'metadatastandardname',
+        message: 'Metadata standard name (multiple values can be entered separated by | )',
+        default: 'ISO 19115',
+        validate: function(value) {
+          var pass = !_.isEmpty(_.trim(value));
+
+          if (pass) {
+            return true;
+          }
+
+          return 'Please enter a non empty metadata standard name';
+        }
+      },
+      {
+        when: function(props) {
+          return props.identifymetadatastandard;
+        },
+        type: 'input',
+        name: 'metadatastandardversion',
+        message: 'Metadata standard version (multiple values can be entered separated by | )',
+        default: '1.0',
+        validate: function(value) {
+          var pass = !_.isEmpty(_.trim(value));
+
+          if (pass) {
+            return true;
+          }
+
+          return 'Please enter a non empty metadata standard version';
+        }
+      },
+      {
+        type: 'confirm',
         name: 'createjava',
         message: 'Create Java plugin code?',
         default: false

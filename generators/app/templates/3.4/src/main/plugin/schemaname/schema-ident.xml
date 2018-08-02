@@ -38,6 +38,7 @@
   </schemaLocation>
   <autodetect xmlns:gmd="http://www.isotc211.org/2005/gmd"
               xmlns:gco="http://www.isotc211.org/2005/gco">
+    <% if (identifymetadatastandard != true) { %>
     <elements type="root">
       <gmd:MD_Metadata/>
       <!-- Identify responsible party subtemplate as ISO19139 -->
@@ -46,6 +47,17 @@
       <gmd:MD_Format/>
       <gmd:EX_Extent/>
     </elements>
+    <% } %>
+    <% if (identifymetadatastandard == true) { %>
+    <elements>
+      <gmd:metadataStandardName>
+        <gco:CharacterString><%= metadatastandardname %></gco:CharacterString>
+      </gmd:metadataStandardName>
+      <gmd:metadataStandardVersion>
+        <gco:CharacterString><%= metadatastandardversion %></gco:CharacterString>
+      </gmd:metadataStandardVersion>
+    </elements>
+    <% } %>
   </autodetect>
   <filters xmlns:gco="http://www.isotc211.org/2005/gco">
     <filter xpath="*//*[@gco:nilReason='withheld']"

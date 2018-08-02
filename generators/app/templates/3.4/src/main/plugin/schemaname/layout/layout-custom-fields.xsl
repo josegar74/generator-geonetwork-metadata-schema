@@ -12,8 +12,11 @@
                 xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="#all">
 
   <!-- Readonly elements -->
+  <% if (identifymetadatastandard != true) { %>
   <!-- Uncomment to make gmd:metadataStandardName and gmd:metadataStandardVersion readonly -->
-  <!--<xsl:template mode="mode-iso19139" priority="2000" match="gmd:metadataStandardName[$schema='<%= name %>']|gmd:metadataStandardVersion[$schema='<%= name %>']">
+  <!--
+  <% } %>
+  <xsl:template mode="mode-iso19139" priority="2000" match="gmd:metadataStandardName[$schema='<%= name %>']|gmd:metadataStandardVersion[$schema='<%= name %>']">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
@@ -29,6 +32,8 @@
       <xsl:with-param name="isDisabled" select="true()"/>
     </xsl:call-template>
 
-  </xsl:template>-->
-
+  </xsl:template>
+  <% if (identifymetadatastandard != true) { %>
+  -->
+  <% } %>
 </xsl:stylesheet>
