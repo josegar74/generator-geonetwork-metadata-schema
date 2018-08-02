@@ -23,7 +23,7 @@ const copyTemplates = generator => {
 
   generator.props.branchname = generator.props.gnversion.substring(0, 3) + '.x';
 
-  const templatePath = generator.props.gnversion.substring(0, 3);
+  const templatePath = (generator.props.is19139schema?"iso19139/":"non-iso19139/") + generator.props.gnversion.substring(0, 3);
   generator.log(templatePath);
   generator.destinationRoot(`${generator.destinationPath(generator.props.name)}`);
   const root = generator.templatePath(templatePath);
@@ -45,17 +45,37 @@ module.exports = class extends Generator {
       yosay(`Welcome to the epic ${chalk.red('geonetwork-metadata-schema')} generator!`)
     );
     this.log(
-      'This generator facilitates the creation of the basic structure for metadata schemas based on ISO19139 to be used in GeoNetwork opensource (https://geonetwork-opensource.org/).\n'
+      'This generator facilitates the creation of the basic structure for metadata schemas to be used in GeoNetwork opensource (https://geonetwork-opensource.org/).\n'
     );
+
     this.log(
       'Creating the structure of the metadata schema is just a first step to develop a new metadata schema for GeoNetwork opensource. You need to add any developments/customisations required for your schema, among others: metadata editor customisations, validation rules, etc.\n'
     );
+
+    this.log(
+      'By default, the generator creates metadata schemas based on ISO19139, delegating most of the code to the existing ISO19139 schema in GeoNetwork.\n'
+    );
+
+    this.log(
+      'It\'s also possible to create schemas NON based on ISO19139, but this requires much more development effort.\n'
+    );
+
     this.log(
       'For further information about developing metadata schemas for GeoNetwork opensource, see https://geonetwork-opensource.org/manuals/3.4.x/en/customizing-application/implementing-a-schema-plugin.html\n'
     );
 
     const prompts = [
       {
+        type: 'confirm',
+        name: 'is19139schema',
+        message:
+          'Do you want to generate a metadata schema based on ISO19139?',
+        default: true
+      },
+      {
+        when: function(props) {
+          return props.is19139schema;
+        },
         type: 'input',
         name: 'name',
         message: 'Metadata schema name',
@@ -68,6 +88,23 @@ module.exports = class extends Generator {
               return true;
             }
             return "Please enter a valid schema name. Valid schema names should start with 'iso19139.'";
+          }
+          return 'Please enter a non empty metadata schema name';
+        }
+      },
+      {
+        when: function(props) {
+          return !props.is19139schema;
+        },
+        type: 'input',
+        name: 'name',
+        message: 'Metadata schema name',
+        default: 'test',
+        validate: function(value) {
+          var pass = !_.isEmpty(_.trim(value));
+
+          if (pass) {
+            return true;
           }
           return 'Please enter a non empty metadata schema name';
         }
@@ -110,6 +147,9 @@ module.exports = class extends Generator {
         default: '3.4.3+'
       },
       {
+        when: function(props) {
+          return props.is19139schema;
+        },
         type: 'confirm',
         name: 'identifymetadatastandard',
         message:
@@ -155,6 +195,9 @@ module.exports = class extends Generator {
         }
       },
       {
+        when: function(props) {
+          return props.is19139schema;
+        },
         type: 'confirm',
         name: 'createjava',
         message: 'Create Java plugin code?',
