@@ -41,7 +41,18 @@ const copyTemplates = generator => {
 module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
-    this.log(yosay(`Welcome to the epic ${chalk.red('generator-gn-schema')} generator!`));
+    this.log(
+      yosay(`Welcome to the epic ${chalk.red('geonetwork-metadata-schema')} generator!`)
+    );
+    this.log(
+      'This generator facilitates the creation of the basic structure for metadata schemas based on ISO19139 to be used in GeoNetwork opensource (https://geonetwork-opensource.org/).\n'
+    );
+    this.log(
+      'Creating the structure of the metadata schema is just a first step to develop a new metadata schema for GeoNetwork opensource. You need to add any developments/customisations required for your schema, among others: metadata editor customisations, validation rules, etc.\n'
+    );
+    this.log(
+      'For further information about developing metadata schemas for GeoNetwork opensource, see https://geonetwork-opensource.org/manuals/3.4.x/en/customizing-application/implementing-a-schema-plugin.html\n'
+    );
 
     const prompts = [
       {
@@ -101,7 +112,8 @@ module.exports = class extends Generator {
       {
         type: 'confirm',
         name: 'identifymetadatastandard',
-        message: 'Use metadata standard name (gmd:metadataStandardName) and version (gmd:metadataStandardVersion) elements to identify the metadata',
+        message:
+          'Use metadata standard name (gmd:metadataStandardName) and version (gmd:metadataStandardVersion) elements to identify the metadata',
         default: false
       },
       {
@@ -110,7 +122,8 @@ module.exports = class extends Generator {
         },
         type: 'input',
         name: 'metadatastandardname',
-        message: 'Metadata standard name (multiple values can be entered separated by | )',
+        message:
+          'Metadata standard name (multiple values can be entered separated by | )',
         default: 'ISO 19115',
         validate: function(value) {
           var pass = !_.isEmpty(_.trim(value));
@@ -128,7 +141,8 @@ module.exports = class extends Generator {
         },
         type: 'input',
         name: 'metadatastandardversion',
-        message: 'Metadata standard version (multiple values can be entered separated by | )',
+        message:
+          'Metadata standard version (multiple values can be entered separated by | )',
         default: '1.0',
         validate: function(value) {
           var pass = !_.isEmpty(_.trim(value));
