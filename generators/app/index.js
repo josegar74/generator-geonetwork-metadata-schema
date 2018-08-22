@@ -17,13 +17,17 @@ const copyTemplates = generator => {
 
   if (generator.props.gnversion === '3.4.3+') {
     generator.props.pomversion = '3.4';
-  } else {
+  } else if (generator.props.gnversion.indexOf('3.4') > -1) {
     generator.props.pomversion = generator.props.gnversion + '-0';
+  } else {
+    generator.props.pomversion = generator.props.gnversion;
   }
 
   generator.props.branchname = generator.props.gnversion.substring(0, 3) + '.x';
 
-  const templatePath = generator.props.gnversion.substring(0, 3);
+  // For now use 3.4 templates also for 3.5 as are the same
+  // const templatePath = generator.props.gnversion.substring(0, 3);
+  const templatePath = '3.4';
   generator.log(templatePath);
   generator.destinationRoot(`${generator.destinationPath(generator.props.name)}`);
   const root = generator.templatePath(templatePath);
@@ -106,7 +110,7 @@ module.exports = class extends Generator {
         type: 'list',
         name: 'gnversion',
         message: 'GeoNetwork version',
-        choices: ['3.4.1', '3.4.2', '3.4.3+'],
+        choices: ['3.4.1', '3.4.2', '3.4.3+', '3.5'],
         default: '3.4.3+'
       },
       {
