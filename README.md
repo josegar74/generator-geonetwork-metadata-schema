@@ -37,6 +37,9 @@ Enter the following information:
    - 3.4.1
    - 3.4.2
    - 3.4.3+ (since 3.4.3 pom version management is different than from previous 3.4 releases)
+   - 3.5 (current GeoNetwork master branch)
+- Use metadata standard name (gmd:metadataStandardName) and version (gmd:metadataStandardVersion) elements to identify the metadata: if selected the user is prompted for the metadata standard name and version values.
+- Create Java plugin code: If selected, specific Java code is created for the metadata schema, otherwise relies on ISO19139 Java code.
 
 Example:   
  
